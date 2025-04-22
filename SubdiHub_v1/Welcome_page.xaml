@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Welcome_page"
+             Title="SubdiHub"
+             BackgroundColor="#F5F7FA"
+             Appearing="OnPageAppearing">
+    <ContentPage.Resources>
+        <!-- Button Style -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#FB923C" />
+            <!-- Muted orange -->
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="WidthRequest" Value="250" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#60A5FA" />
+            <!-- Muted blue -->
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="WidthRequest" Value="250" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+
+    </ContentPage.Resources>
+    <Grid>
+        <!-- Background Gradient Overlay -->
+        <BoxView>
+            <BoxView.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#F9FAFB" Offset="0.0" />
+                    <!-- Softer light gray -->
+                    <GradientStop Color="#E5E7EB" Offset="1.0" />
+                    <!-- Slightly medium gray -->
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+        <VerticalStackLayout Padding="30,40,30,30" Spacing="20" VerticalOptions="CenterAndExpand">
+            <!-- Logo with Shadow -->
+            <Image x:Name="LogoImage"
+                   Source="clearbglogo.png"
+                   HeightRequest="200"
+                   WidthRequest="200"
+                   HorizontalOptions="Center"
+                   Opacity="0">
+                <Image.Shadow>
+                    <Shadow Brush="#4B5563" Offset="2,2" Radius="5" Opacity="0.1" />
+                </Image.Shadow>
+            </Image>
+            <!-- Header Text -->
+            <Label x:Name="HeaderLabel"
+                   Text="Welcome to SubdiHub"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#1F2937"
+                   HorizontalOptions="Center"
+                   Opacity="0"
+                   TranslationY="20" />
+            <!-- Subtitle -->
+            <Label x:Name="SubtitleLabel"
+                   Text="A modern hub for effortless community and business management."
+                   FontSize="16"
+                   TextColor="#4B5563"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   Opacity="0"
+                   TranslationY="20" />
+            <!-- Sign In Button -->
+            <Button x:Name="SignInButton"
+                    Text="Sign In"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Clicked="OnLoginClicked" />
+            <!-- Create Account Button -->
+            <Button x:Name="CreateAccountButton"
+                    Text="Create account"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Clicked="OnSignupClicked" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

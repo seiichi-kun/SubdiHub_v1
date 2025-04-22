@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Resident.Account_resident"
+             Title="Account_resident"
+             BackgroundColor="White"
+             Padding="20">
+    <ContentPage.Resources>
+        <!-- Modern Button Style -->
+        <Style TargetType="Button" x:Key="ModernButton">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#FFFFFF" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="BackgroundColor" Value="#FF8600" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="1" />
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.8" />
+                                <Setter Property="Scale" Value="0.95" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <!-- Glassmorphic Border Style -->
+        <Style TargetType="Border" x:Key="GlassmorphicBorder">
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Stroke" Value="#FF8600" />
+            <Setter Property="BackgroundColor" Value="#E6F0FA" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Opacity" Value="0.9" />
+            <Setter Property="StrokeShape">
+                <RoundRectangle CornerRadius="15" />
+            </Setter>
+        </Style>
+
+        <!-- Profile Image Border Style -->
+        <Style TargetType="Border" x:Key="ProfileImageBorder">
+            <Setter Property="StrokeThickness" Value="0" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="Shadow">
+                <Shadow Brush="#1A1A1A"
+                        Offset="2,2"
+                        Radius="5"
+                        Opacity="0.5" />
+            </Setter>
+            <Setter Property="StrokeShape">
+                <RoundRectangle CornerRadius="30" />
+            </Setter>
+        </Style>
+
+        <!-- Label Styles -->
+        <Style TargetType="Label" x:Key="HeaderLabel">
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#FF8600" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0,10,0,20" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="ProfileNameLabel">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#333333" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="ProfileRoleLabel">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="#808080" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Spacing="20">
+        <!-- Header -->
+        <Label Text="Settings"
+               Style="{StaticResource HeaderLabel}" />
+
+        <!-- Profile Section -->
+        <Border Style="{StaticResource GlassmorphicBorder}">
+            <HorizontalStackLayout Spacing="15">
+                <Border Style="{StaticResource ProfileImageBorder}"
+                        WidthRequest="60"
+                        HeightRequest="60">
+                    <Image x:Name="ProfileImage"
+                           Source="car.png"
+                           WidthRequest="60"
+                           HeightRequest="60"
+                           Aspect="AspectFill">
+                        <Image.Clip>
+                            <RoundRectangleGeometry CornerRadius="30" Rect="0,0,60,60" />
+                        </Image.Clip>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProfileImageTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Border>
+                <VerticalStackLayout VerticalOptions="Center" Spacing="5">
+                    <Label x:Name="NameLabel"
+                           Text="Matthew Manalang"
+                           Style="{StaticResource ProfileNameLabel}" />
+                    <Label x:Name="RoleLabel"
+                           Text="App Developer"
+                           Style="{StaticResource ProfileRoleLabel}" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Border>
+
+        <!-- Action Buttons Section -->
+        <Border Style="{StaticResource GlassmorphicBorder}">
+            <VerticalStackLayout Spacing="15">
+                <Button Text="Emergency Contact"
+                        BackgroundColor="#E63946"
+                        Style="{StaticResource ModernButton}"
+                        Command="{Binding EmergencyContactCommand}" />
+                <Button Text="Edit Profile"
+                        Style="{StaticResource ModernButton}"
+                        Clicked="Edit_profile" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Logout Button -->
+        <Button Text="Logout"
+                BackgroundColor="#96705B"
+                Style="{StaticResource ModernButton}"
+                Clicked="Logout_btn" />
+    </VerticalStackLayout>
+</ContentPage>

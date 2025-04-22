@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Seller.Productposted"
+             Title="Productposted">
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <Label Text="Your Posted Products"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,20,0,0" />
+        <CollectionView x:Name="ProductsCollectionView"
+                        ItemsSource="{Binding Products}"
+                        VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="#FF8600"
+                           BackgroundColor="Transparent"
+                           CornerRadius="5"
+                           Padding="5"
+                           Margin="5">
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="80" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Image}"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   Aspect="AspectFill"
+                                   Grid.Column="0" />
+                            <VerticalStackLayout Grid.Column="1"
+                                                Spacing="5">
+                                <Label Text="{Binding Name}"
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Price, StringFormat='Price: ${0:F2}'}" />
+                                <Label Text="{Binding Category}"
+                                       FontSize="12" />
+                            </VerticalStackLayout>
+                            <Button Text="Delete"
+                                    BackgroundColor="Red"
+                                    TextColor="White"
+                                    CornerRadius="5"
+                                    WidthRequest="80"
+                                    Grid.Column="2"
+                                    Command="{Binding BindingContext.DeleteProductCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                    CommandParameter="{Binding .}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

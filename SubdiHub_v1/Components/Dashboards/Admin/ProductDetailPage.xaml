@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Admin.ProductDetailPage"
+             Title="ProductDetailPage"
+             NavigationPage.HasBackButton="True">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <Image Source="{Binding ProductImage}"
+                   HeightRequest="250"
+                   Aspect="AspectFill" />
+
+            <Label Text="{Binding Name}"
+                   FontSize="24"
+                   FontAttributes="Bold" />
+
+            <Label Text="{Binding Price, StringFormat='₱{0:N2}'}"
+                   FontSize="20"
+                   TextColor="Orange" />
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
+                <Button Text="-"
+                        x:Name="DecreaseButton"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        BackgroundColor="LightBlue"
+                        CornerRadius="20" />
+                <Label x:Name="number"
+                       FontSize="18"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Button Text="+"
+                        x:Name="IncreaseButton"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        BackgroundColor="Orange"
+                        CornerRadius="20" />
+            </HorizontalStackLayout>
+
+            <Label Text="{Binding Description}"
+                   FontSize="16" />
+
+            <Button Text="ADD TO CART"
+                    Clicked="OnAddToCartClicked"
+                    BackgroundColor="Orange"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

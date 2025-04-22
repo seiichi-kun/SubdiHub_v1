@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Seller.Seller_seller"
+             Title="Vendor Orders"
+             BackgroundColor="#F5F7FA">
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="Margin" Value="10,5" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="BorderColor" Value="#FF8600" />
+        </Style>
+        <Style TargetType="Label" x:Key="HeaderLabel">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#121212" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0,20,0,10" />
+        </Style>
+        <Style TargetType="Label" x:Key="EmptyLabel">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="#6B7280" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        </Style>
+        <Style TargetType="Button" x:Key="ActionButton">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Spacing="10" Padding="10">
+                <ScrollView Orientation="Horizontal">
+                    <HorizontalStackLayout Spacing="10" Padding="10,0">
+                        <Button Text="Orders"
+                                BackgroundColor="#E6F0FA"
+                                TextColor="#1A3C5A"
+                                CornerRadius="20"
+                                Padding="15,8"
+                                FontSize="16" />
+                        <Button Text="Products"
+                                BackgroundColor="#E6F0FA"
+                                TextColor="#1A3C5A"
+                                CornerRadius="20"
+                                Padding="15,8"
+                                FontSize="16" />
+                        <Button Text="Customers"
+                                BackgroundColor="#E6F0FA"
+                                TextColor="#1A3C5A"
+                                CornerRadius="20"
+                                Padding="15,8"
+                                FontSize="16" />
+                        <Button Text="Insights"
+                                BackgroundColor="#E6F0FA"
+                                TextColor="#1A3C5A"
+                                CornerRadius="20"
+                                Padding="15,8"
+                                FontSize="16" />
+                    </HorizontalStackLayout>
+                </ScrollView>
+                <Label Text="Your Orders"
+                       Style="{StaticResource HeaderLabel}" />
+                <Label x:Name="EmptyOrdersLabel"
+                       Text="No orders received yet."
+                       Style="{StaticResource EmptyLabel}"
+                       IsVisible="{Binding IsEmptyVisible}" />
+                <CollectionView x:Name="OrdersCollection"
+                               ItemsSource="{Binding Orders}"
+                               IsVisible="{Binding IsOrdersVisible}"
+                               SelectionMode="None"
+                               ItemSizingStrategy="MeasureAllItems">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame x:Name="OrderFrame"
+                                   TranslationY="50"
+                                   Opacity="0">
+                                <VerticalStackLayout Spacing="10">
+                                    <!-- User Info -->
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Image Source="{Binding UserProfileImage}"
+                                               HeightRequest="40"
+                                               WidthRequest="40"
+                                               Aspect="AspectFill">
+                                            <Image.Clip>
+                                                <RoundRectangleGeometry CornerRadius="20"
+                                                                       Rect="0,0,40,40" />
+                                            </Image.Clip>
+                                        </Image>
+                                        <VerticalStackLayout Spacing="5"
+                                                            VerticalOptions="Center">
+                                            <Label Text="{Binding UserName}"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#121212" />
+                                            <Label Text="{Binding UserAddress}"
+                                                   FontSize="12"
+                                                   TextColor="#6B7280" />
+                                            <Label Text="{Binding UserContact}"
+                                                   FontSize="12"
+                                                   TextColor="#6B7280" />
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                    <!-- Order Info -->
+                                    <Label Text="{Binding HeaderText}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#121212" />
+                                    <Label Text="{Binding StatusText}"
+                                           FontSize="12"
+                                           TextColor="{Binding StatusColor}" />
+                                    <Label Text="{Binding TotalText}"
+                                           FontSize="12"
+                                           TextColor="#121212" />
+                                    <!-- Order Items -->
+                                    <CollectionView ItemsSource="{Binding Items}"
+                                                   HeightRequest="{Binding ItemsHeight}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
+                                                    <Image Source="{Binding ProductImage}"
+                                                           HeightRequest="40"
+                                                           WidthRequest="40"
+                                                           Aspect="AspectFill">
+                                                        <Image.Clip>
+                                                            <RoundRectangleGeometry CornerRadius="8"
+                                                                                   Rect="0,0,40,40" />
+                                                        </Image.Clip>
+                                                    </Image>
+                                                    <VerticalStackLayout Spacing="5"
+                                                                        VerticalOptions="Center">
+                                                        <Label Text="{Binding ProductName}"
+                                                               FontSize="12"
+                                                               TextColor="#121212"
+                                                               FontAttributes="Bold" />
+                                                        <Label Text="{Binding PriceQuantityText}"
+                                                               FontSize="10"
+                                                               TextColor="#2D6A4F" />
+                                                    </VerticalStackLayout>
+                                                </HorizontalStackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                    <!-- Action Buttons for Pending Orders -->
+                                    <HorizontalStackLayout Spacing="10"
+                                                          IsVisible="{Binding IsPending}"
+                                                          HorizontalOptions="End">
+                                        <Button Text="Accept"
+                                                BackgroundColor="#2D6A4F"
+                                                Style="{StaticResource ActionButton}"
+                                                Command="{Binding AcceptOrderCommand}" />
+                                        <Button Text="Decline"
+                                                BackgroundColor="#D90429"
+                                                Style="{StaticResource ActionButton}"
+                                                Command="{Binding DeclineOrderCommand}" />
+                                    </HorizontalStackLayout>
+                                    <!-- Confirm Cancel Button for Waiting for Seller Response -->
+                                    <HorizontalStackLayout Spacing="10"
+                                                          IsVisible="{Binding IsWaitingForCancel}"
+                                                          HorizontalOptions="End">
+                                        <Button Text="Confirm Cancel"
+                                                BackgroundColor="#D90429"
+                                                Style="{StaticResource ActionButton}"
+                                                Command="{Binding ConfirmCancelCommand}" />
+                                    </HorizontalStackLayout>
+                                    <!-- Delivered Button for On the Way to Delivery -->
+                                    <HorizontalStackLayout Spacing="10"
+                                                          IsVisible="{Binding IsOnTheWay}"
+                                                          HorizontalOptions="End">
+                                        <Button Text="Delivered"
+                                                BackgroundColor="#2D6A4F"
+                                                Style="{StaticResource ActionButton}"
+                                                Command="{Binding MarkDeliveredCommand}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+        <ActivityIndicator IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}"
+                           Color="#2D6A4F"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+    </Grid>
+</ContentPage>

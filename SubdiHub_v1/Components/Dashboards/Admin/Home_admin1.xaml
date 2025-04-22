@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Admin.Home_admin1"
+             BackgroundColor="#F5F7FA">
+    <Grid RowDefinitions="Auto,*" Padding="0">
+        <!-- Header -->
+        <Border Grid.Row="0"
+                BackgroundColor="Transparent"
+                Padding="20"
+                Stroke="#FF8600"
+                StrokeThickness="2"
+                Margin="10,10,10,0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12" />
+            </Border.StrokeShape>
+            <Label Text="Announcements"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="#FF8600"/>
+        </Border>
+
+        <!-- Announcements List -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout x:Name="AnnouncementsContainer"
+                                 Spacing="10"
+                                 Padding="20"/>
+        </ScrollView>
+
+        <!-- Floating Action Button -->
+        <Button ImageSource="plus.png"
+                BackgroundColor="Transparent"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="0,0,20,10"
+                Clicked="AddAnnouncement">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#60A5FA" Offset="0"/>
+                    <GradientStop Color="#3B82F6" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Shadow>
+                <Shadow Brush="#20000000" Offset="0,4" Radius="8" Opacity="0.1"/>
+            </Button.Shadow>
+        </Button>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Admin.Cart_Admin"
+             Title="Cart"
+             BackgroundColor="#FFFFFF"
+             Padding="20">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Spacing="20">
+            <!-- Header -->
+            <Border Stroke="#FF8600"
+                    StrokeThickness="2"
+                    BackgroundColor="Transparent"
+                    Padding="10"
+                    Margin="0,0,0,10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <HorizontalStackLayout>
+                    <Image Source="back_arrow.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
+                    <Label Text="Cart"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Empty Cart Message -->
+            <Label x:Name="EmptyCartLabel"
+                   Text="Your cart is empty."
+                   FontSize="16"
+                   TextColor="#6B7280"
+                   HorizontalOptions="Center"
+                   IsVisible="True" />
+
+            <!-- Cart Items -->
+            <VerticalStackLayout x:Name="CartContainer"
+                                 Spacing="15"
+                                 IsVisible="False" />
+
+            <!-- Pricing Summary -->
+            <Border Stroke="#FF8600"
+                    StrokeThickness="2"
+                    BackgroundColor="Transparent"
+                    Padding="15"
+                    Margin="0,0,0,10"
+                    IsVisible="False"
+                    x:Name="PricingSummaryBorder">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <VerticalStackLayout x:Name="PricingSummary"
+                                     Spacing="10">
+                    <HorizontalStackLayout>
+                        <Label Text="Subtotal"
+                               FontSize="16"
+                               TextColor="#000000" />
+                        <Label x:Name="SubtotalLabel"
+                               FontSize="16"
+                               TextColor="#000000"
+                               HorizontalOptions="EndAndExpand" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="Delivery"
+                               FontSize="16"
+                               TextColor="#666666" />
+                        <Label x:Name="DeliveryLabel"
+                               FontSize="16"
+                               TextColor="#666666"
+                               HorizontalOptions="EndAndExpand" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout>
+                        <Label Text="TOTAL (2 items)"
+                               x:Name="TotalItemsLabel"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#000000" />
+                        <Label x:Name="TotalLabel"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#000000"
+                               HorizontalOptions="EndAndExpand" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Checkout Button -->
+            <Button x:Name="CheckoutButton"
+                    Text="CHECKOUT"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    BackgroundColor="#FF5733"
+                    TextColor="#FFFFFF"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    IsVisible="False"
+                    HorizontalOptions="FillAndExpand" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Authentication.Signup.Signup_page"
+             BackgroundColor="#F5F7FA"
+             Appearing="OnPageAppearing">
+    <ContentPage.Resources>
+        <!-- Button Style -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#F97316" />
+            <!-- Solid Orange -->
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <!-- Entry Border Style -->
+        <Style x:Key="EntryBorderStyle" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Stroke" Value="Transparent" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Shadow">
+                <Shadow Brush="#4B5563" Offset="2,2" Radius="5" Opacity="0.1" />
+            </Setter>
+        </Style>
+        <!-- Picker Style -->
+        <Style x:Key="PickerStyle" TargetType="Picker">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="#1F2937" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="WidthRequest" Value="100" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+        <!-- CheckBox Style -->
+        <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Color" Value="#4B5563" />
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <Grid>
+            <!-- Background Gradient Overlay -->
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#F3F4F6" Offset="0.0" />
+                        <GradientStop Color="#D1D5DB" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+            <VerticalStackLayout Padding="30,40,30,30" Spacing="20">
+                <!-- Title -->
+                <Label x:Name="TitleLabel"
+                       Text="Sign Up"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#1F2937"
+                       HorizontalOptions="Center"
+                       Opacity="0"
+                       TranslationY="20" />
+                <!-- Full Name -->
+                <Border Style="{StaticResource EntryBorderStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry x:Name="FullNameEntry"
+                               Placeholder="Full Name"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                    </HorizontalStackLayout>
+                </Border>
+                <!-- Username -->
+                <Border Style="{StaticResource EntryBorderStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry x:Name="UsernameEntry"
+                               Placeholder="Username"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                    </HorizontalStackLayout>
+                </Border>
+                <!-- Email -->
+                <Border Style="{StaticResource EntryBorderStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry x:Name="EmailEntry"
+                               Placeholder="Email"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                    </HorizontalStackLayout>
+                </Border>
+                <!-- Contact -->
+                <Border Style="{StaticResource EntryBorderStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry x:Name="ContactEntry"
+                               Placeholder="Contact Number"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               Keyboard="Numeric"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                    </HorizontalStackLayout>
+                </Border>
+                <!-- Address -->
+                <Border Style="{StaticResource EntryBorderStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Picker x:Name="StreetPicker"
+                                Title="Street"
+                                Style="{StaticResource PickerStyle}">
+                            <Picker.Items>
+                                <x:String>1st</x:String>
+                                <x:String>2nd</x:String>
+                                <x:String>3rd</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Block" FontSize="12" TextColor="#4B5563" />
+                            <Entry x:Name="BlockEntry"
+                                   Placeholder="Block"
+                                   FontSize="14"
+                                   TextColor="#1F2937"
+                                   PlaceholderColor="#9CA3AF"
+                                   BackgroundColor="White"
+                                   Keyboard="Numeric"
+                                   WidthRequest="70" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Lot" FontSize="12" TextColor="#4B5563" />
+                            <Entry x:Name="LotEntry"
+                                   Placeholder="Lot"
+                                   FontSize="14"
+                                   TextColor="#1F2937"
+                                   PlaceholderColor="#9CA3AF"
+                                   BackgroundColor="White"
+                                   Keyboard="Numeric"
+                                   WidthRequest="70" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Border>
+                <!-- Password -->
+                <Border Style="{StaticResource EntryBorderStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry x:Name="PasswordEntry"
+                               IsPassword="True"
+                               Placeholder="Password"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                        <ImageButton x:Name="PasswordEyeButton"
+                                     Source="eye_icon.png"
+                                     WidthRequest="24"
+                                     HeightRequest="24"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     Clicked="OnPasswordEyeButtonClicked" />
+                    </HorizontalStackLayout>
+                </Border>
+                <!-- Confirm Password -->
+                <Border Style="{StaticResource EntryBorderStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry x:Name="ConfirmPasswordEntry"
+                               IsPassword="True"
+                               Placeholder="Confirm Password"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                        <ImageButton x:Name="ConfirmPasswordEyeButton"
+                                     Source="eye_icon.png"
+                                     WidthRequest="24"
+                                     HeightRequest="24"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     Clicked="OnConfirmPasswordEyeButtonClicked" />
+                    </HorizontalStackLayout>
+                </Border>
+                <!-- Role Selection -->
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="I am a"
+                           FontSize="14"
+                           TextColor="#4B5563" />
+                    <HorizontalStackLayout Spacing="20" HorizontalOptions="Start">
+                        <!-- Resident -->
+                        <HorizontalStackLayout Spacing="5">
+                            <CheckBox x:Name="ResidentCheckBox"
+                                      Style="{StaticResource CheckBoxStyle}" />
+                            <Label Text="Resident"
+                                   FontSize="14"
+                                   TextColor="#1F2937"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <!-- Vendors -->
+                        <HorizontalStackLayout Spacing="5">
+                            <CheckBox x:Name="VendorsCheckBox"
+                                      Style="{StaticResource CheckBoxStyle}" />
+                            <Label Text="Vendors"
+                                   FontSize="14"
+                                   TextColor="#1F2937"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <!-- Admin -->
+                        <HorizontalStackLayout Spacing="5">
+                            <CheckBox x:Name="AdminCheckBox"
+                                      Style="{StaticResource CheckBoxStyle}" />
+                            <Label Text="Admin"
+                                   FontSize="14"
+                                   TextColor="#1F2937"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <!-- Sign Up Button -->
+                <Button x:Name="SignUpButton"
+                        Text="Sign Up"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Clicked="SignUpButton_Clicked" />
+                <!-- Already have an account? -->
+                <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                    <Label Text="Already have an account?"
+                           FontSize="14"
+                           TextColor="#4B5563" />
+                    <Label x:Name="LoginLabel"
+                           Text="Login"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#3B82F6">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLoginTapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

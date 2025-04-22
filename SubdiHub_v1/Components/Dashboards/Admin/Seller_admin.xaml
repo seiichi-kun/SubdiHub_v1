@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Admin.Seller_admin"
+             Padding="15"
+             BackgroundColor="#F5F7FA">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout x:Name="MainContainer" Spacing="20">
+            <!-- Welcome Text -->
+            <Label x:Name="UserNameLabel"
+                   Text="Hi, "
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#1A1A1A" />
+            <!-- Categories -->
+            <Label Text="Categories"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#1A1A1A" />
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                <HorizontalStackLayout x:Name="CategoriesContainer" Spacing="10" Padding="5,0">
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Food and Beverages"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Food and Beverages" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Household Essentials"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Household Essentials" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Fashion and Accessories"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Fashion and Accessories" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Gifts and Crafts"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Gifts and Crafts" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Kids and Babies"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Kids and Babies" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Electronics and Gadgets"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Electronics and Gadgets" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Beauty and Wellness"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Beauty and Wellness" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Plants and Garden"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Plants and Garden" TextColor="White" FontSize="14"/>
+                    </Border>
+                    <Border Padding="12,6" BackgroundColor="#3B82F6" StrokeShape="RoundRectangle 20">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Others"/>
+                        </Border.GestureRecognizers>
+                        <Label Text="Others" TextColor="White" FontSize="14"/>
+                    </Border>
+                </HorizontalStackLayout>
+            </ScrollView>
+
+            <!-- Product Section -->
+            <Label Text="Available products in subdivision"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#1A1A1A" />
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator x:Name="LoadingIndicator"
+                              IsRunning="False"
+                              Color="#3B82F6" />
+
+            <!-- No Products Message -->
+            <Label x:Name="NoProductsLabel"
+                   Text="No products found."
+                   FontSize="16"
+                   TextColor="#6B7280"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsVisible="False" />
+
+            <!-- CollectionView for product binding -->
+            <CollectionView x:Name="ProductsCollectionView"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="15"
+                               Margin="10,5"
+                               BackgroundColor="Transparent"
+                               CornerRadius="20"
+                               HasShadow="False"
+                               BorderColor="#FF8600">
+                            <VerticalStackLayout Spacing="12">
+                                <Image HeightRequest="200"
+                                       WidthRequest="400"
+                                       Aspect="AspectFill"
+                                       Source="{Binding ProductImage}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnProductImageTapped"
+                                                              CommandParameter="{Binding .}" />
+                                    </Image.GestureRecognizers>
+                                    <Image.Clip>
+                                        <RoundRectangleGeometry CornerRadius="15"
+                                                               Rect="0,0,400,200" />
+                                    </Image.Clip>
+                                </Image>
+                                <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#121212"
+                                       FontFamily="Roboto" />
+                                <Label Text="{Binding Price, StringFormat='₱{0:N2}'}"
+                                       FontSize="16"
+                                       TextColor="#2D6A4F"
+                                       FontFamily="RobotoMedium" />
+                                <Label Text="{Binding Description}"
+                                       FontSize="14"
+                                       TextColor="#4A4A4A"
+                                       LineBreakMode="WordWrap"
+                                       MaxLines="2"
+                                       FontFamily="Roboto" />
+                                <HorizontalStackLayout Spacing="10"
+                                                      Margin="0,5,0,0">
+                                    <Image WidthRequest="40"
+                                           HeightRequest="40"
+                                           Aspect="AspectFill"
+                                           Source="{Binding ProfileImage}">
+                                        <Image.Clip>
+                                            <RoundRectangleGeometry CornerRadius="20"
+                                                                   Rect="0,0,40,40" />
+                                        </Image.Clip>
+                                    </Image>
+                                    <Label Text="{Binding SellerName}"
+                                           FontSize="13"
+                                           TextColor="#6B7280"
+                                           FontAttributes="Italic"
+                                           FontFamily="Roboto"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Button Text="Add to Cart"
+                                        CornerRadius="12"
+                                        BackgroundColor="#2D6A4F"
+                                        TextColor="#FFFFFF"
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        FontFamily="RobotoMedium"
+                                        Padding="10,12"
+                                        Margin="0,10,0,0"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=AddToCartCommand}"
+                                        CommandParameter="{Binding .}">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#2D6A4F" Offset="0.0" />
+                                            <GradientStop Color="#40916C" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

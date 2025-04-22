@@ -1,0 +1,72 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Admin.Edit_profile_A"
+             Title="Edit Profile">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Profile Image -->
+            <Border Padding="5" HorizontalOptions="Center">
+                <Image x:Name="ProfileImage"
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       Aspect="AspectFill" />
+            </Border>
+            <Button Text="Change Photo"
+                    HorizontalOptions="Center"
+                    Clicked="OnUploadProfilePictureClicked" />
+
+            <!-- Full Name -->
+            <Entry x:Name="FullNameEntry"
+                   Placeholder="Full Name"
+                   Keyboard="Text" />
+
+            <!-- Username -->
+            <Entry x:Name="UsernameEntry"
+                   Placeholder="Username"
+                   Keyboard="Text" />
+
+            <!-- Email -->
+            <Entry x:Name="EmailEntry"
+                   Placeholder="Email"
+                   Keyboard="Email" />
+
+            <!-- Contact Number -->
+            <Entry x:Name="ContactEntry"
+                   Placeholder="Contact Number"
+                   Keyboard="Telephone" />
+
+            <!-- Street -->
+            <Entry x:Name="StreetEntry"
+                   Placeholder="Street" />
+
+            <!-- Block -->
+            <Entry x:Name="BlockEntry"
+                   Placeholder="Block" />
+
+            <!-- Lot -->
+            <Entry x:Name="LotEntry"
+                   Placeholder="Lot" />
+
+            <!-- Password Change -->
+            <Entry x:Name="PasswordEntry"
+                   Placeholder="New Password"
+                   IsPassword="True" />
+            <Entry x:Name="ConfirmPasswordEntry"
+                   Placeholder="Confirm Password"
+                   IsPassword="True" />
+
+            <!-- Action Buttons -->
+            <Button Text="Save Changes"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Clicked="OnSaveChangesClicked" />
+
+            <Button Text="Cancel"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Clicked="OnCancelClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

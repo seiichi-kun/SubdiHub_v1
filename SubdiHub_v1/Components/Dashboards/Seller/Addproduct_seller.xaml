@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Dashboards.Seller.Addproduct_seller"
+             Title="Add Product"
+             Padding="15"
+             BackgroundColor="#F2F2F2">
+
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Spacing="20">
+
+            <!-- Header -->
+            <Label Text="Add New Product"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#333"
+                   HorizontalOptions="Center"/>
+
+            <!-- Form -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="15"
+                   HasShadow="True"
+                   BorderColor="#E0E0E0">
+                <VerticalStackLayout Spacing="15">
+
+                    <!-- Product Name -->
+                    <Label Text="Product Name"
+                           FontSize="14"
+                           TextColor="#333"/>
+                    <Entry x:Name="ProductNameEntry"
+                           Placeholder="Enter product name"
+                           PlaceholderColor="#999"
+                           TextColor="Black"
+                           FontSize="14"
+                           BackgroundColor="#F9F9F9"/>
+
+                    <!-- Price -->
+                    <Label Text="Price (₱)"
+                           FontSize="14"
+                           TextColor="#333"/>
+                    <Entry x:Name="PriceEntry"
+                           Placeholder="Enter price (e.g., 99.00)"
+                           PlaceholderColor="#999"
+                           TextColor="Black"
+                           FontSize="14"
+                           BackgroundColor="#F9F9F9"
+                           Keyboard="Numeric"/>
+
+                    <!-- Description -->
+                    <Label Text="Description"
+                           FontSize="14"
+                           TextColor="#333"/>
+                    <Editor x:Name="DescriptionEditor"
+                            Placeholder="Enter product description"
+                            PlaceholderColor="#999"
+                            TextColor="Black"
+                            FontSize="14"
+                            BackgroundColor="#F9F9F9"
+                            HeightRequest="100"/>
+
+                    <!-- Image Selection -->
+                    <Label Text="Product Image"
+                           FontSize="14"
+                           TextColor="#333"/>
+                    <Button x:Name="SelectImageButton"
+                            Text="Select Image from Gallery"
+                            BackgroundColor="#00AEEF"
+                            TextColor="White"
+                            FontSize="14"
+                            CornerRadius="15"
+                            Padding="10"
+                            HorizontalOptions="Fill"
+                            Clicked="OnSelectImageClicked"/>
+                    <Label x:Name="ImageFileNameLabel"
+                           Text="No image selected"
+                           FontSize="12"
+                           TextColor="#666"
+                           HorizontalOptions="Start"/>
+
+                    <!-- Category -->
+                    <Label Text="Category"
+                           FontSize="14"
+                           TextColor="#333"/>
+                    <Picker x:Name="CategoryPicker"
+                            Title="Select category"
+                            FontSize="14"
+                            TextColor="Black"
+                            BackgroundColor="#F9F9F9"/>
+
+                    <!-- Post Button -->
+                    <Button Text="Post Product"
+                            BackgroundColor="#00AEEF"
+                            TextColor="White"
+                            FontSize="14"
+                            CornerRadius="15"
+                            Padding="10"
+                            HorizontalOptions="Fill"
+                            Clicked="OnPostProductClicked"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

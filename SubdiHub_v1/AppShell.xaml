@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SubdiHub_v1"
+    xmlns:authLogin="clr-namespace:SubdiHub_v1.Components.Authentication.Login"
+    xmlns:authSignup="clr-namespace:SubdiHub_v1.Components.Authentication.Signup"
+    xmlns:admin="clr-namespace:SubdiHub_v1.Components.Dashboards.Admin"
+    xmlns:seller="clr-namespace:SubdiHub_v1.Components.Dashboards.Seller"
+    xmlns:resident="clr-namespace:SubdiHub_v1.Components.Dashboards.Resident"
+    x:Class="SubdiHub_v1.AppShell"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+    <Shell.Resources>
+        <!-- Style for TabBar -->
+        <Style TargetType="TabBar">
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#FFFFFF" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="#2D6A4F" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#6B7280" />
+            <Setter Property="Shell.TabBarTitleColor" Value="#2D6A4F" />
+            <Setter Property="Shell.DisabledColor" Value="#B0B0B0" />
+        </Style>
+    </Shell.Resources>
+
+    <!-- Welcome Page (Splash Screen) -->
+    <ShellContent 
+        Title="Welcome"
+        ContentTemplate="{DataTemplate local:Welcome_page}"
+        Route="WelcomePage"
+        FlyoutItemIsVisible="False" 
+        Shell.NavBarIsVisible="False"
+        Shell.TabBarIsVisible="False"/>
+
+    <!-- Authentication Pages -->
+    <ShellContent 
+        Title="Login"
+        ContentTemplate="{DataTemplate authLogin:Login_page}"
+        Route="LoginPage"
+        FlyoutItemIsVisible="False" 
+        Shell.NavBarIsVisible="False"
+        Shell.TabBarIsVisible="False"/>
+
+    <ShellContent 
+        Title="Signup"
+        ContentTemplate="{DataTemplate authSignup:Signup_page}"
+        Route="SignupPage"
+        FlyoutItemIsVisible="False" 
+        Shell.NavBarIsVisible="False"
+        Shell.TabBarIsVisible="False"/>
+
+    <!-- Admin Dashboard -->
+    <TabBar x:Name="AdminDashboard" FlyoutItemIsVisible="False">
+        <ShellContent 
+            Title="Home"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate admin:Home_admin1}"
+            Route="Home_admin1"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Sellers"
+            Icon="store.png"
+            ContentTemplate="{DataTemplate admin:Seller_admin}"
+            Route="Seller_admin"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Cart"
+            Icon="cart.png"
+            ContentTemplate="{DataTemplate admin:Cart_Admin}"
+            Route="Cart_Admin"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="History"
+            Icon="history.png"
+            ContentTemplate="{DataTemplate admin:OrderHistory}"
+            Route="OrderHistory"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Account"
+            Icon="user.png"
+            ContentTemplate="{DataTemplate admin:Account_admin}"
+            Route="Account_admin"
+            Shell.NavBarIsVisible="False"/>
+        
+    </TabBar>
+
+    <!-- Seller Dashboard -->
+    <TabBar x:Name="SellerDashboard" FlyoutItemIsVisible="False">
+        <ShellContent 
+            Title="Home"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate seller:Home_seller}"
+            Route="Home_seller"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Product"
+            Icon="store.png"
+            ContentTemplate="{DataTemplate seller:Productposted}"
+            Route="Product"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Add"
+            Icon="add.png"
+            ContentTemplate="{DataTemplate seller:Addproduct_seller}"
+            Route="Addproduct_seller"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Orders"
+            Icon="clipboard.png"
+            ContentTemplate="{DataTemplate seller:Seller_seller}"
+            Route="Seller_seller"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Account"
+            Icon="user.png"
+            ContentTemplate="{DataTemplate seller:Account_seller}"
+            Route="Account_seller"
+            Shell.NavBarIsVisible="False"/>
+    </TabBar>
+
+    <!-- Resident Dashboard -->
+    <TabBar x:Name="ResidentDashboard" FlyoutItemIsVisible="False">
+        <ShellContent 
+            Title="Home"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate resident:Home_resident}"
+            Route="Home_resident"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Sellers"
+            Icon="store.png"
+            ContentTemplate="{DataTemplate resident:Seller_resident}"
+            Route="Seller_resident"
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent 
+            Title="Account"
+            Icon="user.png"
+            ContentTemplate="{DataTemplate resident:Account_resident}"
+            Route="Account_resident"
+            Shell.NavBarIsVisible="False"/>
+    </TabBar>
+</Shell>

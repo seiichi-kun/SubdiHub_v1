@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "808196940321",
+    "firebase_url": "https://subdihub-f418e-default-rtdb.firebaseio.com",
+    "project_id": "subdihub-f418e",
+    "storage_bucket": "subdihub-f418e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808196940321:android:6af9aefe497840cc21f960",
+        "android_client_info": {
+          "package_name": "SubdiHub.SubdiHub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQNHbwJ6XP5FRornGc_iyXb7Cy9EQsDRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

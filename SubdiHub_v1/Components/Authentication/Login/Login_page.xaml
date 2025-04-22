@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SubdiHub_v1.Components.Authentication.Login.Login_page"
+             Title="Login_page"
+             BackgroundColor="#F5F7FA"
+             Appearing="OnPageAppearing">
+    <ContentPage.Resources>
+        <!-- Define Shadow Effect -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Stroke" Value="#E5E7EB" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="Shadow">
+                <Shadow Brush="#4B5563" Offset="5,5" Radius="10" Opacity="0.1" />
+            </Setter>
+        </Style>
+        <!-- Button Style -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#F97316" />
+            <!-- Solid Orange -->
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="15,10" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <!-- Background Gradient Overlay -->
+        <BoxView>
+            <BoxView.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#F3F4F6" Offset="0.0" />
+                    <GradientStop Color="#D1D5DB" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+        <VerticalStackLayout Padding="30,20,30,30" Spacing="25" VerticalOptions="CenterAndExpand">
+            <!-- Logo -->
+            <Image x:Name="LogoImage"
+                   Source="clearbglogo.png"
+                   HeightRequest="150"
+                   HorizontalOptions="Center"
+                   Opacity="0" />
+            <!-- Login Title -->
+            <Label x:Name="TitleLabel"
+                   Text="Welcome Back"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="#1F2937"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"
+                   Opacity="0"
+                   TranslationY="20" />
+            <!-- Username Field -->
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Username"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="#4B5563" />
+                <Border Style="{StaticResource CardStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="user1.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               VerticalOptions="Center" />
+                        <Entry x:Name="UsernameEntry"
+                               Placeholder="Enter your username"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <!-- Password Field -->
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Password"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="#4B5563" />
+                <Border Style="{StaticResource CardStyle}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout Spacing="10">
+                        <Image Source="padlock.png"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               VerticalOptions="Center" />
+                        <Entry x:Name="PasswordEntry"
+                               IsPassword="True"
+                               Placeholder="Enter your password"
+                               FontSize="16"
+                               TextColor="#1F2937"
+                               PlaceholderColor="#9CA3AF"
+                               BackgroundColor="Transparent"
+                               ClearButtonVisibility="WhileEditing"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="5,0" />
+                        <ImageButton x:Name="EyeButton"
+                                     Source="sda.png"
+                                     WidthRequest="24"
+                                     HeightRequest="24"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     Clicked="OnEyeButtonClicked" />
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+            <!-- Forgot Password -->
+            <Label Text="Forgot password?"
+                   FontSize="14"
+                   TextColor="#3B82F6"
+                   HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnForgotPasswordTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <!-- Login Button -->
+            <Button x:Name="LoginButton"
+                    Text="Log In"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Clicked="OnLoginClicked" />
+            <!-- Sign Up Link -->
+            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                <Label Text="Don't have an account?"
+                       FontSize="14"
+                       TextColor="#4B5563" />
+                <Label Text="Sign Up"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="#3B82F6">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignupTapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
