@@ -29,7 +29,9 @@
 		<MauiFont Include="Resources\Fonts\*" />
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
-
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\subdihub_icon.png" />
+	</ItemGroup>
 	<ItemGroup>
 		<AndroidResource Remove="NewFolder1\**" />
 		<Compile Remove="NewFolder1\**" />

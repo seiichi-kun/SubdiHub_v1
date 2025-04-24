@@ -2,41 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SubdiHub_v1.Components.Dashboards.Admin.Home_admin1"
-             BackgroundColor="#F5F7FA">
-    <Grid RowDefinitions="Auto,*" Padding="0">
-        <!-- Header -->
-        <Border Grid.Row="0"
-                BackgroundColor="Transparent"
-                Padding="20"
-                Stroke="#FF8600"
-                StrokeThickness="2"
-                Margin="10,10,10,0">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="12" />
-            </Border.StrokeShape>
-            <Label Text="Announcements"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   TextColor="#FF8600"/>
-        </Border>
+             BackgroundColor="#F5F7FA"
+             Shell.NavBarIsVisible="False">
 
-        <!-- Announcements List -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout x:Name="AnnouncementsContainer"
-                                 Spacing="10"
-                                 Padding="20"/>
-        </ScrollView>
+    <AbsoluteLayout>
+
+        <!-- Main Content Grid -->
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All"
+              RowDefinitions="Auto,*">
+
+            <!-- Header -->
+            <Border Grid.Row="0"
+                    BackgroundColor="#1A374D"
+                    Padding="20"
+                    StrokeThickness="0">
+                <Label Text="Announcements"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="#FF8600"/>
+            </Border>
+
+            <!-- Announcements List -->
+            <ScrollView Grid.Row="1" Margin="0,0,0,80">
+                <VerticalStackLayout x:Name="AnnouncementsContainer"
+                                     Spacing="10"
+                                     Padding="20"/>
+            </ScrollView>
+
+        </Grid>
 
         <!-- Floating Action Button -->
         <Button ImageSource="plus.png"
-                BackgroundColor="Transparent"
                 HeightRequest="60"
                 WidthRequest="60"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                Margin="0,0,20,10"
+                BackgroundColor="Transparent"
+                AbsoluteLayout.LayoutBounds="1,1,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Margin="20,0,20,20"
                 Clicked="AddAnnouncement">
             <Button.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -45,8 +50,9 @@
                 </LinearGradientBrush>
             </Button.Background>
             <Button.Shadow>
-                <Shadow Brush="#20000000" Offset="0,4" Radius="8" Opacity="0.1"/>
+                <Shadow Brush="#20000000" Offset="0,4" Radius="8" Opacity="0.3"/>
             </Button.Shadow>
         </Button>
-    </Grid>
+
+    </AbsoluteLayout>
 </ContentPage>

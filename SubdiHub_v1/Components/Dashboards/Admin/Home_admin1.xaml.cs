@@ -75,7 +75,34 @@ namespace SubdiHub_v1.Components.Dashboards.Admin
                     };
 
                     // Create the main layout for the card
-                    var cardLayout = new VerticalStackLayout { Spacing = 10 };
+                    var cardLayout = new Grid
+                    {
+                        RowDefinitions = new RowDefinitionCollection
+                        {
+                            new RowDefinition { Height = GridLength.Auto },
+                            new RowDefinition { Height = GridLength.Star }
+                        }
+                    };
+
+                    // Delete Button
+                    var deleteButton = new Button
+                    {
+                        Text = "✕",
+                        FontSize = 16,
+                        TextColor = Colors.White,
+                        BackgroundColor = Color.Parse("#EF4444"),
+                        WidthRequest = 30,
+                        HeightRequest = 30,
+                        CornerRadius = 15,
+                        HorizontalOptions = LayoutOptions.End,
+                        VerticalOptions = LayoutOptions.Start,
+                        Margin = new Thickness(0, -10, -10, 0)
+                    };
+                    deleteButton.Clicked += async (s, e) => await DeleteAnnouncement(announcement.Id);
+
+                    // Content Layout
+                    var contentLayout = new VerticalStackLayout { Spacing = 10 };
+                    contentLayout.SetValue(Grid.RowProperty, 1);
 
                     // Admin Info Section
                     var adminInfoLayout = new HorizontalStackLayout { Spacing = 15 };
@@ -145,10 +172,14 @@ namespace SubdiHub_v1.Components.Dashboards.Admin
                         IsVisible = !string.IsNullOrEmpty(announcement.ImageUrl)
                     };
 
-                    // Add all elements to the card layout
-                    cardLayout.Children.Add(adminInfoLayout);
-                    cardLayout.Children.Add(descriptionLabel);
-                    cardLayout.Children.Add(announcementImage);
+                    // Add all elements to the content layout
+                    contentLayout.Children.Add(adminInfoLayout);
+                    contentLayout.Children.Add(descriptionLabel);
+                    contentLayout.Children.Add(announcementImage);
+
+                    // Add elements to card layout
+                    cardLayout.Children.Add(deleteButton);
+                    cardLayout.Children.Add(contentLayout);
 
                     // Add the card to the border
                     cardBorder.Content = cardLayout;
@@ -160,9 +191,36 @@ namespace SubdiHub_v1.Components.Dashboards.Admin
             catch (Exception ex)
             {
                 await DisplayAlert("Error", $"Failed to load announcements: {ex.Message}\nInner Exception: {ex.InnerException?.Message}", "OK");
-            } 
+            }
         }
 
+        private async Task DeleteAnnouncement(string announcementId) // Changed parameter type to string
+        {
+            bool confirmed = await DisplayAlert(
+                "Delete Announcement",
+                "Are you sure you want to delete this announcement?",
+                "Confirm",
+                "Cancel"
+            );
+
+            if (confirmed)
+            {
+                try
+                {
+                    await _client
+                        .From<Announcement>()
+                        .Where(a => a.Id == announcementId) // No change needed here as both are now strings
+                        .Delete();
+
+                    await LoadAnnouncements(); // Refresh the list
+                    await DisplayAlert("Success", "Announcement deleted successfully", "OK");
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", $"Failed to delete announcement: {ex.Message}", "OK");
+                }
+            }
+        }
 
         private async void AddAnnouncement(object sender, EventArgs e)
         {
